@@ -70,12 +70,194 @@
 # Use `Model.destroy_all` code.
 # TODO!
 
+Movie.destroy_all
+Person.destroy_all
+Role.destroy_all
+
 # Generate models and tables, according to the domain model
 # TODO!
+
+person1 = Person.new
+person1.name = "Christopher Nolan"
+person1.save
+
+person2 = Person.new
+person2.name = "Christian Bale"
+person2.save
+
+person3 = Person.new
+person3.name = "Michael Caine"
+person3.save
+
+person4 = Person.new
+person4.name = "Liam Neeson"
+person4.save
+
+person5 = Person.new
+person5.name = "Katie Holmes"
+person5.save
+
+person6 = Person.new
+person6.name = "Gary Oldman"
+person6.save
+
+person7 = Person.new
+person7.name = "Heath Ledger"
+person7.save
+
+person8 = Person.new
+person8.name = "Aaron Eckhart"
+person8.save
+
+person9 = Person.new
+person9.name = "Maggie Gyllenhaal"
+person9.save
+
+person10 = Person.new
+person10.name = "Tom Hardy"
+person10.save
+
+person11 = Person.new
+person11.name = "Joseph Gordon-Levitt"
+person11.save
+
+person12 = Person.new
+person12.name = "Anne Hathaway"
+person12.save
+
+c_nolan = Person.where({name: "Christopher Nolan"})[0]
+
+movie1 = Movie.new
+movie1.title = "Batman Begins"
+movie1.year_released = "2005"
+movie1.rated = "PG-13"
+movie1.person_id=c_nolan.id
+movie1.save
+
+movie2 = Movie.new
+movie2.title = "The Dark Knight"
+movie2.year_released = "2008"
+movie2.rated = "PG-13"
+movie2.person_id=c_nolan.id
+movie2.save
+
+movie3 = Movie.new
+movie3.title = "The Dark Knight Rises"
+movie3.year_released = "2012"
+movie3.rated = "PG-13"
+movie3.person_id=c_nolan.id
+movie3.save
+
+movie1 = Movie.where({title: "Batman Begins"})[0]
+movie2 = Movie.where({title: "The Dark Knight"})[0]
+movie3 = Movie.where({title: "The Dark Knight Rises"})[0]
+
+christian = Person.where({name: "Christian Bale"})[0]
+michael = Person.where({name: "Michael Caine"})[0]
+liam = Person.where({name: "Liam Neeson"})[0]
+katie = Person.where({name: "Katie Holmes"})[0]
+gary = Person.where({name: "Gary Oldman"})[0]
+heath = Person.where({name: "Heath Ledger"})[0]
+aaron = Person.where({name: "Aaron Eckhart"})[0]
+maggie = Person.where({name: "Maggie Gyllenhaal"})[0]
+tom = Person.where({name: "Tom Hardy"})[0]
+joseph = Person.where({name: "Joseph Gordon-Levitt"})[0]
+anne = Person.where({name: "Anne Hathaway"})[0]
+
+role1 = Role.new
+role1.movie_id = movie1.id
+role1.person_id = christian.id
+role1.character_name = "Bruce Wayne"
+role1.save
+
+role2 = Role.new
+role2.movie_id = movie1.id
+role2.person_id = michael.id
+role2.character_name = "Alfred"
+role2.save
+
+role3 = Role.new
+role3.movie_id = movie1.id
+role3.person_id = liam.id
+role3.character_name = "Ra's Al Ghul"
+role3.save
+
+role4 = Role.new
+role4.movie_id = movie1.id
+role4.person_id = katie.id
+role4.character_name = "Rachel Dawes"
+role4.save
+
+role5 = Role.new
+role5.movie_id = movie1.id
+role5.person_id = gary.id
+role5.character_name = "Commissioner Gordon"
+role5.save
+
+role6 = Role.new
+role6.movie_id = movie2.id
+role6.person_id = christian.id
+role6.character_name = "Bruce Wayne"
+role6.save
+
+role7 = Role.new
+role7.movie_id = movie2.id
+role7.person_id = heath.id
+role7.character_name = "Joker"
+role7.save
+
+role8 = Role.new
+role8.movie_id = movie2.id
+role8.person_id = aaron.id
+role8.character_name = "Harvey Dent"
+role8.save
+
+role9 = Role.new
+role9.movie_id = movie2.id
+role9.person_id = michael.id
+role9.character_name = "Alfred"
+role9.save
+
+role10 = Role.new
+role10.movie_id = movie2.id
+role10.person_id = maggie.id
+role10.character_name = "Rachel Dawes"
+role10.save
+
+role11 = Role.new
+role11.movie_id = movie3.id
+role11.person_id = christian.id
+role11.character_name = "Bruce Wayne"
+role11.save
+
+role12 = Role.new
+role12.movie_id = movie3.id
+role12.person_id = gary.id
+role12.character_name = "Commissioner Gordon"
+role12.save
+
+role13 = Role.new
+role13.movie_id = movie3.id
+role13.person_id = tom.id
+role13.character_name = "Bane"
+role13.save
+
+role14 = Role.new
+role14.movie_id = movie3.id
+role14.person_id = joseph.id
+role14.character_name = "John Blake"
+role14.save
+
+role15 = Role.new
+role15.movie_id = movie3.id
+role15.person_id = anne.id
+role15.character_name = "Selina Kyle"
+role15.save
 
 # Insert data into your database that reflects the sample data shown above
 # Do not use hard-coded foreign key IDs.
 # TODO!
+
 
 # Prints a header for the movies output
 puts "Movies"
@@ -85,6 +267,12 @@ puts ""
 # Query the movies data and loop through the results to display the movies output
 # TODO!
 
+director = Person.where({id: movie1.person_id})[0]
+
+for movies in Movie.all
+    puts "#{movies.title}  #{movies.year_released}  #{movies.rated}  #{director.name}"
+end
+
 # Prints a header for the cast output
 puts ""
 puts "Top Cast"
@@ -93,3 +281,4 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie
 # TODO!
+
